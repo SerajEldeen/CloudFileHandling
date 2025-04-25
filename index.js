@@ -12,9 +12,8 @@ const { Upload } = require("@aws-sdk/lib-storage");
 const path = require("path");
 
 const app = express();
-app.use(express.static(path.join(__dirname, "dist")));
-
 app.use(cors());
+app.use(express.static(path.join(__dirname, "dist")));
 
 const s3 = new S3Client({
   region: process.env.REGION,
