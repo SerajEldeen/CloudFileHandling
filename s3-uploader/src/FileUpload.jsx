@@ -4,9 +4,9 @@ import axios from "axios";
 
 export default function FileUpload() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const REACT_APP_API_URL = "http://51.21.131.198:3001";
-  const apiUrl = REACT_APP_API_URL || "http://localhost:3001";
-
+  // const REACT_APP_API_URL = "http://51.21.131.198:3001";
+  const apiUrl = "http://localhost:3001";
+  //REACT_APP_API_URL ||
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
@@ -16,7 +16,7 @@ export default function FileUpload() {
 
     try {
       // http://localhost:3001
-      await axios.post(`${apiUrl}upload`, formData);
+      await axios.post(`${apiUrl}/upload`, formData);
 
       setUploadedFiles((prev) => [
         ...prev,
