@@ -85,7 +85,7 @@ app.delete("/delete/:filename", async (req, res) => {
   }
 });
 
-app.get("*", (req, res) => {
+app.get(/^\/(?!upload|list|delete).*/, (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
