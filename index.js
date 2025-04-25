@@ -9,8 +9,14 @@ const {
   DeleteObjectCommand,
 } = require("@aws-sdk/client-s3");
 const { Upload } = require("@aws-sdk/lib-storage");
+const path = require("path");
 
 const app = express();
+app.use(express.static(path.join(__dirname, "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 app.use(cors());
 
 const s3 = new S3Client({
