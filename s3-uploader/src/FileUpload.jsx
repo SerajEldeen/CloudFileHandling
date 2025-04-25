@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function FileUpload() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-
+  const apiUrl = "http://51.21.131.198:3001/";
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
@@ -13,7 +13,8 @@ export default function FileUpload() {
     formData.append("file", selectedFile);
 
     try {
-      await axios.post("http://localhost:3001/upload", formData);
+      // http://localhost:3001
+      await axios.post(`${apiUrl}upload`, formData);
 
       setUploadedFiles((prev) => [
         ...prev,
@@ -31,7 +32,8 @@ export default function FileUpload() {
 
   const handleDelete = async (filename) => {
     try {
-      await axios.delete(`http://localhost:3001/delete/${filename}`);
+      // http://localhost:3001/
+      await axios.delete(`${apiUrl}/delete/${filename}`);
       setUploadedFiles((prevFiles) =>
         prevFiles.filter((file) => file.name !== filename)
       );
