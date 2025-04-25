@@ -14,9 +14,6 @@ const path = require("path");
 const app = express();
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
 app.use(cors());
 
 const s3 = new S3Client({
@@ -87,6 +84,10 @@ app.delete("/delete/:filename", async (req, res) => {
     console.error(err);
     res.status(500).send("Error deleting file");
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.listen(3001, "0.0.0.0", () => console.log("Server running on port 3001"));
