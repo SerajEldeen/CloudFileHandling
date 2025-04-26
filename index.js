@@ -69,7 +69,6 @@ app.get("/list", async (req, res) => {
     res.status(500).send("Error listing files");
   }
 });
-
 // Delete file from S3
 app.delete("/delete/:filename", async (req, res) => {
   try {
