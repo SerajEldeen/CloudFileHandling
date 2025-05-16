@@ -4,9 +4,7 @@ import axios from "axios";
 
 export default function FileUpload() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  // const RAILWAY_URL = "https://cloudfilehandling-production.up.railway.app";
   const apiUrl = "http://localhost:3001";
-  //REACT_APP_API_URL ||
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
@@ -15,7 +13,6 @@ export default function FileUpload() {
     formData.append("file", selectedFile);
 
     try {
-      // http://localhost:3001
       await axios.post(`${apiUrl}/upload`, formData);
 
       setUploadedFiles((prev) => [
